@@ -14,9 +14,9 @@
   },
   "proxy": "http://localhost:8080",
   "scripts": {
-    "build": "npm run build",
+    "builds": "npm run build",
     "install-client": "npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
+    "heroku-postbuild": "npm run install-client && npm run builds",
     "start": "node server.js",
     "client": "npm start",
     "test": "react-scripts test",
