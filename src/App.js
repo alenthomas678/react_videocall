@@ -66,7 +66,7 @@ class App extends Component {
             },
         }
 
-        this.serviceIP = 'https://webrtcforreact.herokuapp.com/socket.io/'
+        this.serviceIP = 'https://webrtcforreact.herokuapp.com/'
 
 
         this.socket = null

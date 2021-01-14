@@ -1,27 +1,26 @@
-const express = require('express')
+const express = require('express');
+const http = require('http');
+const app = express();
+const server = http.createServer(app);
+const socket = require('socket.io');
+const io = socket(server);
+const cors = require('cors');
 
-var io = require('socket.io')()
-
-const app = express()
 const PORT = process.env.PORT || 8080
 
 const rooms = {};
 const socketToRoom = {};
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(__dirname + '/build'))
-  app.get('/', (req, res, next) => {
-    res.sendFile(__dirname + '/build/index.html')
-  });
+app.use(cors());
 
-  app.get('/:room', (req, res, next) => {
-    res.sendFile(__dirname + '/build/index.html')
-  });
-}
+app.use(express.static(__dirname + '/build'));
+app.get('/', (req, res, next) => {
+  res.sendFile(__dirname + '/build/index.html');
+});
 
-const server = app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
-
-io.listen(server)
+app.get('/:room', (req, res, next) => {
+  res.sendFile(__dirname + '/build/index.html');
+});
 
 
 io.on('connection', socket => {
@@ -101,5 +100,7 @@ io.on('connection', socket => {
         socketID: data["local"],
       });
     }
-  })
+  });
 });
+
+server.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
