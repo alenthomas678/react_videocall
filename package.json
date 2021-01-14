@@ -15,7 +15,6 @@
     "socket.io": "^3.0.5",
     "socket.io-client": "^2.3.1"
   },
-  "proxy": "http://localhost:8080",
   "scripts": {
     "build": "react-scripts build",
     "install-client": "npm install",
