@@ -17,8 +17,6 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "install-client": "npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
     "start": "node server.js",
     "client": "npm start",
     "test": "react-scripts test",
