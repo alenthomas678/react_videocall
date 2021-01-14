@@ -6,7 +6,7 @@ const server = http.createServer(app);
 const socket = require('socket.io');
 const io = socket(server, {
   path: '/io/webrtc',
-  transports: ['websocket', 'polling']
+  transports: ['websocket']
 });
 const cors = require('cors');
 
