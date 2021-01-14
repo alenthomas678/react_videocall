@@ -192,6 +192,7 @@ class App extends Component {
             this.serviceIP,
             {
                 path: '/io/webrtc',
+                transports: ['polling']
             }
         )
 
