@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const app = express();
@@ -6,22 +7,10 @@ const socket = require('socket.io');
 const io = socket(server);
 const cors = require('cors');
 
-const PORT = process.env.PORT || 8080
-
 const rooms = {};
 const socketToRoom = {};
 
 app.use(cors());
-
-app.use(express.static(__dirname + '/build'));
-app.get('/', (req, res, next) => {
-  res.sendFile(__dirname + '/build/index.html');
-});
-
-app.get('/:room', (req, res, next) => {
-  res.sendFile(__dirname + '/build/index.html');
-});
-
 
 io.on('connection', socket => {
   console.log('connected ', socket.id)
@@ -103,4 +92,17 @@ io.on('connection', socket => {
   });
 });
 
-server.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
+if (process.env.NODE_ENV == 'production') {
+  app.use(express.static(__dirname + '/build'));
+  app.get('/', (req, res, next) => {
+    res.sendFile(__dirname + '/build/index.html');
+  });
+
+  app.get('/:room', (req, res, next) => {
+    res.sendFile(__dirname + '/build/index.html');
+  });
+}
+
+const PORT = process.env.PORT || 8080;
+
+server.listen(PORT, () => console.log(`WebRTC app listening on port ${PORT}`));
