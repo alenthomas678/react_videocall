@@ -191,7 +191,8 @@ class App extends Component {
         this.socket = io.connect(
             this.serviceIP,
             {
-                path: '/io/webrtc'
+                path: '/io/webrtc',
+                transports: ['websocket']
             }
         )
 
