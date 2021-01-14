@@ -43,8 +43,6 @@ io.on('connection', socket => {
       socket.emit("online-peer", { otherUser: otherUser });
       socket.to(otherUser).emit("joined peers", { otherUser: socket.id });
     }
-    console.log(rooms);
-    console.log(socketToRoom);
   });
 
   socket.on('messager', (data) => {
@@ -63,7 +61,6 @@ io.on('connection', socket => {
   });
 
   socket.on('offer', function (data) {
-    console.log(data["sdp"]);
     const otherUser = rooms[roomId].find(id => id !== socket.id);
     if (otherUser) {
       socket.to(otherUser).emit("offer", {
@@ -74,7 +71,6 @@ io.on('connection', socket => {
   })
 
   socket.on('answer', function (data) {
-    console.log(data["sdp"]);
     const otherUser = rooms[roomId].find(id => id !== socket.id);
     if (otherUser) {
       socket.to(otherUser).emit("answer", {
