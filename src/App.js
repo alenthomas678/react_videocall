@@ -66,7 +66,7 @@ class App extends Component {
             },
         }
 
-        this.serviceIP = '/'
+        this.serviceIP = 'https://webrtcforreact.herokuapp.com'
 
 
         this.socket = null
@@ -190,6 +190,9 @@ class App extends Component {
 
         this.socket = io.connect(
             this.serviceIP,
+            {
+                path: '/io/webrtc'
+            }
         )
 
         this.socket.on('connection-success', data => {

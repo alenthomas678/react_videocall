@@ -4,7 +4,9 @@ const http = require('http');
 const app = express();
 const server = http.createServer(app);
 const socket = require('socket.io');
-const io = socket(server);
+const io = socket(server, {
+  path: '/io/webrtc'
+});
 const cors = require('cors');
 
 const rooms = {};
@@ -93,16 +95,14 @@ io.on('connection', socket => {
 });
 
 if (process.env.NODE_ENV == 'production') {
-  
-  // app.use(express.static(__dirname + '/build'));
+  app.use(express.static(__dirname + '/build'));
   app.get('/', (req, res, next) => {
-    // res.sendFile(__dirname + '/build/index.html');
-    res.send('Hello WebRTC');
+    res.sendFile(__dirname + '/build/index.html');
   });
 
-  // app.get('/:room', (req, res, next) => {
-  //   res.sendFile(__dirname + '/build/index.html');
-  // });
+  app.get('/:room', (req, res, next) => {
+    res.sendFile(__dirname + '/build/index.html');
+  });
 }
 
 const PORT = process.env.PORT || 8080;
