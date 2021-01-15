@@ -9,9 +9,6 @@ const io = socket(server, {
   transports: ['websocket']
 });
 
-io.set('origins', '*:*');
-io.set('match origin protocol', true);
-
 const cors = require('cors');
 
 const rooms = {};
