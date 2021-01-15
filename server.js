@@ -8,12 +8,26 @@ const io = socket(server, {
   path: '/io/webrtc',
   transports: ['websocket']
 });
+
+io.set('origins', '*:*');
+io.set('match origin protocol', true);
+
 const cors = require('cors');
 
 const rooms = {};
 const socketToRoom = {};
 
 app.use(cors());
+
+app.use(express.static(__dirname + '/build'));
+app.get('/', (req, res, next) => {
+  res.sendFile(__dirname + '/build/index.html');
+});
+
+app.get('/:room', (req, res, next) => {
+  res.sendFile(__dirname + '/build/index.html');
+});
+
 
 io.on('connection', socket => {
   console.log('connected ', socket.id)
@@ -90,17 +104,6 @@ io.on('connection', socket => {
     }
   });
 });
-
-if (process.env.NODE_ENV == 'production') {
-  app.use(express.static(__dirname + '/build'));
-  app.get('/', (req, res, next) => {
-    res.sendFile(__dirname + '/build/index.html');
-  });
-
-  app.get('/:room', (req, res, next) => {
-    res.sendFile(__dirname + '/build/index.html');
-  });
-}
 
 const PORT = process.env.PORT || 8080;
 
