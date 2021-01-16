@@ -66,7 +66,7 @@ class App extends Component {
             },
         }
 
-        this.serviceIP = 'wss://video-webrtc-mern.herokuapp.com/'
+        this.serviceIP = 'https://node-videocall-backend.herokuapp.com/'
 
 
         this.socket = null
@@ -189,11 +189,7 @@ class App extends Component {
 		this.getLocalStream();
 
         this.socket = io.connect(
-            this.serviceIP,
-            {
-                path: '/io/webrtc',
-                transports: ['websocket'],
-            }
+            this.serviceIP
         )
 
         this.socket.on('connection-success', data => {
