@@ -20,7 +20,39 @@ class App extends Component {
             pc_config: {
                 "iceServers": [
                     {
+                        url: 'turn:global.turn.twilio.com:3478?transport=udp',
+                        username: '08d8032f0fbfb6bd01acdb6a78ef56ea08150468c92514c10bfa788536465808',
+                        urls: 'turn:global.turn.twilio.com:3478?transport=udp',
+                        credential: 'kBZTE33+2x3/qZYbE5edOlowo2grOZwizv1iV7noq7E='
+                    },
+                    {
+                        url: 'turn:global.turn.twilio.com:3478?transport=tcp',
+                        username: '08d8032f0fbfb6bd01acdb6a78ef56ea08150468c92514c10bfa788536465808',
+                        urls: 'turn:global.turn.twilio.com:3478?transport=tcp',
+                        credential: 'kBZTE33+2x3/qZYbE5edOlowo2grOZwizv1iV7noq7E='
+                    },
+                    {
+                        url: 'turn:global.turn.twilio.com:443?transport=tcp',
+                        username: '08d8032f0fbfb6bd01acdb6a78ef56ea08150468c92514c10bfa788536465808',
+                        urls: 'turn:global.turn.twilio.com:443?transport=tcp',
+                        credential: 'kBZTE33+2x3/qZYbE5edOlowo2grOZwizv1iV7noq7E='
+                    },
+                    {
+                        urls: ["turn:numb.viagenie.ca"],
+                        username: "alenthomas678@gmail.com",
+                        credential: "dio2063@benedire"
+                    },
+                    {
+                        url: 'stun:global.stun.twilio.com:3478?transport=udp',
+                        urls: 'stun:stun.l.google.com:19302'
+                    },
+                    {
                         urls: "stun:stun.stunprotocol.org"
+                    },
+                    {
+                        urls: 'turn:numb.viagenie.ca',
+                        credential: 'muazkh',
+                        username: 'webrtc@live.com'
                     },
                 ]
             },
@@ -54,7 +86,7 @@ class App extends Component {
         }
 
         const constraints = {
-            audio: false,
+			audio: false,
             video: true,
             options: {
                 mirror: true,
@@ -129,7 +161,7 @@ class App extends Component {
     handleRecieveCall = (incoming) => {
         this.pc = this.createPeerConnection(incoming["socketID"]);
         this.pc.addStream(this.state.localStream)
-        const value = JSON.parse(incoming["sdp"]);
+		const value = JSON.parse(incoming["sdp"]);
         const desc = new RTCSessionDescription(value);
         this.pc.setRemoteDescription(desc).then(() => {
             return this.pc.createAnswer({ offerToReceiveVideo: 1, offerToReceiveAudio: 1 });
@@ -145,15 +177,15 @@ class App extends Component {
     }
 
     handleAnswer = (message) => {
-        console.log(message["sdp"]);
-        const value = JSON.parse(message["sdp"]);
+		console.log(message["sdp"]);
+		const value = JSON.parse(message["sdp"]);
         const desc = new RTCSessionDescription(value);
         this.pc.setRemoteDescription(desc).catch(e => console.log(e));
     }
 
     componentDidMount = () => {
-
-        this.getLocalStream();
+		
+		this.getLocalStream();
 
         this.socket = io.connect(
             this.serviceIP
@@ -181,7 +213,7 @@ class App extends Component {
                 peer_uid: data.otherUser
             })
         })
-
+ 
         this.socket.on('online-peer', (data) => {
             const socketID = data.otherUser;
             this.setState({
@@ -202,8 +234,8 @@ class App extends Component {
         })
 
         this.socket.on('candidate', (data) => {
-            const candidate = JSON.parse(data["candidate"]);
-            console.log(candidate);
+            const candidate = JSON.parse(data["candidate"]); 
+			console.log(candidate);
             if (this.pc)
                 this.pc.addIceCandidate(new RTCIceCandidate(candidate))
         })
