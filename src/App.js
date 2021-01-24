@@ -38,11 +38,6 @@ class App extends Component {
                         credential: 'kBZTE33+2x3/qZYbE5edOlowo2grOZwizv1iV7noq7E='
                     },
                     {
-                        urls: ["turn:numb.viagenie.ca"],
-                        username: "alenthomas678@gmail.com",
-                        credential: "dio2063@benedire"
-                    },
-                    {
                         url: 'stun:global.stun.twilio.com:3478?transport=udp',
                         urls: 'stun:stun.l.google.com:19302'
                     },
@@ -234,7 +229,7 @@ class App extends Component {
         })
 
         this.socket.on('candidate', (data) => {
-            const candidate = JSON.parse(data["candidate"]); 
+            const candidate = data["candidate"]; 
 			console.log(candidate);
             if (this.pc)
                 this.pc.addIceCandidate(new RTCIceCandidate(candidate))
