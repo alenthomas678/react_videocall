@@ -81,7 +81,7 @@ class App extends Component {
         }
 
         const constraints = {
-			audio: false,
+	    audio: true,
             video: true,
             options: {
                 mirror: true,
