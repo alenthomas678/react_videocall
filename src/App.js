@@ -193,7 +193,7 @@ class App extends Component {
             })
 
             console.log(data.success)
-            const status = data.peerCount > 1 ? `Total Connected Peers to room ${window.location.pathname}: ${data.peerCount}` : 'Waiting for other peers to connect'
+            const status = 'Waiting for other peer to connect'
 
             this.setState({
                 status: status
@@ -207,6 +207,12 @@ class App extends Component {
             this.setState({
                 peer_uid: data.otherUser
             })
+
+            const status = 'ON CALL'
+
+            this.setState({
+                status: status
+            })
         })
  
         this.socket.on('online-peer', (data) => {
@@ -214,6 +220,13 @@ class App extends Component {
             this.setState({
                 peer_uid: socketID
             })
+
+            const status = 'ON CALL'
+
+            this.setState({
+                status: status
+            })
+
             this.pc = this.createPeerConnection(socketID);
             this.sendOffer(socketID);
         })
