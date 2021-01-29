@@ -148,6 +148,8 @@ class App extends Component {
                 this.socket.emit('offer', {
                     sdp: JSON.stringify(this.pc.localDescription),
                     local: this.socket.id,
+                    name: "Web Client",
+                    pro_img: "https://via.placeholder.com/150",
                     remote: socketID,
                 })
             }).catch(e => console.log(e));
@@ -166,6 +168,8 @@ class App extends Component {
             this.socket.emit('answer', {
                 sdp: JSON.stringify(this.pc.localDescription),
                 local: this.socket.id,
+                name: "Web Client",
+                pro_img: "https://via.placeholder.com/150",
                 remote: incoming["socketID"],
             })
         })
