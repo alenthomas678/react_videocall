@@ -149,7 +149,7 @@ class App extends Component {
                     sdp: JSON.stringify(this.pc.localDescription),
                     local: this.socket.id,
                     name: "Web Client",
-                    pro_img: "https://via.placeholder.com/150",
+                    pro_img: "https://res.cloudinary.com/mysample/image/upload/v1612023397/images_8_r9c9t9.jpg",
                     remote: socketID,
                 })
             }).catch(e => console.log(e));
@@ -169,7 +169,7 @@ class App extends Component {
                 sdp: JSON.stringify(this.pc.localDescription),
                 local: this.socket.id,
                 name: "Web Client",
-                pro_img: "https://via.placeholder.com/150",
+                pro_img: "https://res.cloudinary.com/mysample/image/upload/v1612023397/images_8_r9c9t9.jpg",
                 remote: incoming["socketID"],
             })
         })
