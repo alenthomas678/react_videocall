@@ -280,7 +280,7 @@ class App extends Component {
                     padding: 10,
                     borderRadius: 5,
                 }}>
-                    {statusText}
+                    
                     {this.state.my_uid}
                     <br />
                     {this.state.peer_uid}
