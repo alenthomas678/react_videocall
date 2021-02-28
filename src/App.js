@@ -253,12 +253,9 @@ class App extends Component {
     }
 
     render() {
-
-        
-
         return (
             <div>
-                 <Video
+                <Video
                     videoStyles={{
                         zIndex: 1,
                         position: 'fixed',
@@ -279,7 +276,6 @@ class App extends Component {
                     padding: 10,
                     borderRadius: 5,
                 }}>
-                    
                     {this.state.my_uid}
                     <br />
                     {this.state.peer_uid}
