@@ -259,19 +259,6 @@ class App extends Component {
 
         return (
             <div>
-               // <Video
-                 //   videoStyles={{
-                     //   zIndex: 2,
-                     //  position: 'absolute',
-                     //  right: 0,
-                     //  width: 200,
-                     //  height: 200,
-                     //  margin: 5,
-                     //  backgroundColor: 'black'
-                   // }}
-                   // videoStream={this.state.localStream}
-                  //  autoPlay muted>
-               // </Video>
                 <Video
                     videoStyles={{
                         zIndex: 1,
