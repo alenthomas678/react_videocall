@@ -255,7 +255,7 @@ class App extends Component {
 
     render() {
 
-        const statusText = <div style={{ color: 'yellow', padding: 5 }}>{this.state.status}</div>
+        
 
         return (
             <div>
