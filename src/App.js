@@ -14,7 +14,7 @@ class App extends Component {
             pc: null,
             my_uid: "",
             peer_uid: "",
-
+            _offer = false,
             status: 'Please wait...',
 
             pc_config: {
@@ -145,6 +145,9 @@ class App extends Component {
             this.pc.createOffer({ offerToReceiveVideo: 1, offerToReceiveAudio: 1 }).then(offer => {
                 return this.pc.setLocalDescription(offer);
             }).then(() => {
+                this.setState({
+                _offer: true
+                })
                 this.socket.emit('offer', {
                     sdp: JSON.stringify(this.pc.localDescription),
                     local: this.socket.id,
@@ -259,7 +262,7 @@ class App extends Component {
 
         return (
             <div>
-                <Video
+                if(!this.state._offer) <Video
                     videoStyles={{
                         zIndex: 1,
                         position: 'fixed',
