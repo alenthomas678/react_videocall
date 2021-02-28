@@ -14,7 +14,7 @@ class App extends Component {
             pc: null,
             my_uid: "",
             peer_uid: "",
-            _offer = false,
+            _offer: false,
             status: 'Please wait...',
 
             pc_config: {
